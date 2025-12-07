@@ -16,16 +16,16 @@ DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data')
 
 # Mapping of GTFS files to database tables
 FILE_TABLE_MAPPING = {
-    'agency.txt': 'agencies',
-    'routes.txt': 'routes',
-    'stops.txt': 'stops',
-    'calendar.txt': 'service_calendars',
-    'calendar_dates.txt': 'calendar_exceptions',
-    'shapes.txt': 'shapes',
-    'fare_attributes.txt': 'fare_types',
-    'trips.txt': 'trips',
-    'stop_times.txt': 'stop_times',
-    'fare_rules.txt': 'fare_rules'
+    'agency.txt': 'agency',
+    'routes.txt': 'route',
+    'stops.txt': 'stop',
+    'calendar.txt': 'service_calendar',
+    'calendar_dates.txt': 'calendar_exception',
+    'shapes.txt': 'shape',
+    'fare_attributes.txt': 'fare_type',
+    'trips.txt': 'trip',
+    'stop_times.txt': 'stop_time',
+    'fare_rules.txt': 'fare_rule'
 }
 
 def load_gtfs_file(cursor, filename, table_name):
@@ -71,16 +71,16 @@ def main():
 
         # Load each GTFS file in order (respecting foreign key dependencies)
         load_order = [
-            ('agency.txt', 'agencies'),
-            ('routes.txt', 'routes'),
-            ('stops.txt', 'stops'),
-            ('calendar.txt', 'service_calendars'),
-            ('calendar_dates.txt', 'calendar_exceptions'),
-            ('shapes.txt', 'shapes'),
-            ('fare_attributes.txt', 'fare_types'),
-            ('trips.txt', 'trips'),
-            ('stop_times.txt', 'stop_times'),
-            ('fare_rules.txt', 'fare_rules')
+            ('agency.txt', 'agency'),
+            ('routes.txt', 'route'),
+            ('stops.txt', 'stop'),
+            ('calendar.txt', 'service_calendar'),
+            ('calendar_dates.txt', 'calendar_exception'),
+            ('shapes.txt', 'shape'),
+            ('fare_attributes.txt', 'fare_type'),
+            ('trips.txt', 'trip'),
+            ('stop_times.txt', 'stop_time'),
+            ('fare_rules.txt', 'fare_rule')
         ]
 
         for filename, table_name in load_order:
@@ -92,19 +92,19 @@ def main():
 
         # Print summary statistics
         print("\nDatabase Summary:")
-        cursor.execute("SELECT COUNT(*) FROM agencies")
+        cursor.execute("SELECT COUNT(*) FROM agency")
         print(f"  Agencies: {cursor.fetchone()[0]}")
 
-        cursor.execute("SELECT COUNT(*) FROM routes")
+        cursor.execute("SELECT COUNT(*) FROM route")
         print(f"  Routes: {cursor.fetchone()[0]}")
 
-        cursor.execute("SELECT COUNT(*) FROM stops")
+        cursor.execute("SELECT COUNT(*) FROM stop")
         print(f"  Stops: {cursor.fetchone()[0]}")
 
-        cursor.execute("SELECT COUNT(*) FROM trips")
+        cursor.execute("SELECT COUNT(*) FROM trip")
         print(f"  Trips: {cursor.fetchone()[0]}")
 
-        cursor.execute("SELECT COUNT(*) FROM stop_times")
+        cursor.execute("SELECT COUNT(*) FROM stop_time")
         print(f"  Stop Times: {cursor.fetchone()[0]}")
 
         cursor.close()

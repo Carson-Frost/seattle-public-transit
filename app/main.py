@@ -22,28 +22,28 @@ if test_connection():
     col1, col2, col3, col4 = st.columns(4)
 
     with col1:
-        result = run_query("SELECT COUNT(*) as count FROM agencies")
+        result = run_query("SELECT COUNT(*) as count FROM agency")
         count = result['count'].iloc[0] if not result.empty else 0
         st.metric("Agencies", count)
 
     with col2:
-        result = run_query("SELECT COUNT(*) as count FROM routes")
+        result = run_query("SELECT COUNT(*) as count FROM route")
         count = result['count'].iloc[0] if not result.empty else 0
         st.metric("Routes", count)
 
     with col3:
-        result = run_query("SELECT COUNT(*) as count FROM stops")
+        result = run_query("SELECT COUNT(*) as count FROM stop")
         count = result['count'].iloc[0] if not result.empty else 0
         st.metric("Stops", count)
 
     with col4:
-        result = run_query("SELECT COUNT(*) as count FROM trips")
+        result = run_query("SELECT COUNT(*) as count FROM trip")
         count = result['count'].iloc[0] if not result.empty else 0
         st.metric("Trips", count)
 
     # Show sample data
     st.subheader("Sample Routes")
-    routes_df = run_query("SELECT route_id, route_short_name, route_long_name, route_type FROM routes LIMIT 10")
+    routes_df = run_query("SELECT route_id, route_short_name, route_long_name, route_type FROM route LIMIT 10")
     st.dataframe(routes_df, use_container_width=True)
 
 else:
