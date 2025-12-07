@@ -1,14 +1,17 @@
 import psycopg2
 import csv
 import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Database connection parameters
 DB_CONFIG = {
-    'dbname': 'seattle_transit',
-    'user': 'postgres',
-    'password': 'your_password',  # Update this
-    'host': 'localhost',
-    'port': 5432
+    'dbname': os.getenv('DB_NAME'),
+    'user': os.getenv('DB_USER'),
+    'password': os.getenv('DB_PASSWORD'),
+    'host': os.getenv('DB_HOST')
 }
 
 # Path to GTFS data files
