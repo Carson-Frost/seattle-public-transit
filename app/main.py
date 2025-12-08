@@ -44,7 +44,7 @@ if test_connection():
     # Show sample data
     st.subheader("Sample Routes")
     routes_df = run_query("SELECT route_id, route_short_name, route_long_name, route_type FROM route LIMIT 10")
-    st.dataframe(routes_df, use_container_width=True)
+    st.dataframe(routes_df, width='stretch')
 
 else:
     st.error("Failed to connect to database. Please check your connection settings in .env file")
