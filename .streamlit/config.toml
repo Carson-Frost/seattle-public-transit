@@ -3,3 +3,9 @@ gatherUsageStats = false
 
 [client]
 showErrorDetails = true
+
+[theme]
+primaryColor = "#2e7d32"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#e8f5e9"
+textColor = "#1a1a1a"

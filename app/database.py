@@ -32,9 +32,30 @@ def run_query(query, params=None):
         return pd.DataFrame()
 
     try:
-        df = pd.read_sql_query(query, cn, params=params)
-        return df
+        # Check if it's a SELECT query (returns data) or a modification query (INSERT/UPDATE/DELETE)
+        query_upper = query.strip().upper()
+        if query_upper.startswith('SELECT') or query_upper.startswith('WITH'):
+            # SELECT query - use pandas to read results
+            df = pd.read_sql_query(query, cn, params=params)
+            return df
+        else:
+            # INSERT/UPDATE/DELETE query - execute and commit
+            cursor = cn.cursor()
+            cursor.execute(query, params)
+
+            # Check if there are results to fetch (e.g., RETURNING clause)
+            if cursor.description is not None:
+                columns = [desc[0] for desc in cursor.description]
+                results = cursor.fetchall()
+                df = pd.DataFrame(results, columns=columns)
+            else:
+                df = pd.DataFrame()
+
+            cn.commit()
+            cursor.close()
+            return df
     except Exception as e:
+        cn.rollback()
         st.error(f"Query error: {e}")
         return pd.DataFrame()
 
