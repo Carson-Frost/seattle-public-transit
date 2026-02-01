@@ -11,16 +11,28 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Reduce top padding
+# Custom styling
 st.markdown("""
     <style>
-        .block-container { padding-top: 1rem; }
+        /* Add space for navbar */
+        .block-container { padding-top: 3.5rem; }
+
+        /* Put title in the navbar */
+        [data-testid="stHeader"] {
+            display: flex;
+            align-items: center;
+            padding-left: 5rem;
+        }
+        [data-testid="stHeader"]::before {
+            content: "Seattle GTFS Data Analysis";
+            font-size: 2rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
     </style>
     """, unsafe_allow_html=True)
 
-st.title("Seattle GTFS Data Analysis")
-
-# Create tabs
+# Tabs
 tab1, tab2, tab3 = st.tabs(["Performance", "Schedules", "Actual Trips"])
 
 with tab1:
