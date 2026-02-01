@@ -12,15 +12,15 @@ from utils import sort_route_key, calc_delay_pct
 
 def render():
     """Render the Performance tab."""
-    st.header("Performance")
-    st.write("Compare actual vs scheduled performance · *Actual trip data is sample/mockup data*")
+    st.header("Performance", anchor=False)
+    st.write("Compare actual vs scheduled performance · *Actual trip data is sample data*")
 
     if not test_connection():
         st.error("Database connection failed. Please check your configuration.")
         st.stop()
 
     # Filters
-    st.subheader("Filters")
+    st.subheader("Filters", anchor=False)
     col1, col2, col3 = st.columns(3)
 
     with col1:
@@ -112,7 +112,7 @@ def render():
         return
 
     # Summary metrics
-    st.subheader("Summary")
+    st.subheader("Summary", anchor=False)
     cols = st.columns(5)
 
     total = len(df)
@@ -137,7 +137,7 @@ def render():
     st.divider()
 
     # Main chart
-    st.subheader("Actual vs Scheduled Performance")
+    st.subheader("Actual vs Scheduled Performance", anchor=False)
 
     routes = sorted(df['route_short_name'].unique(), key=sort_route_key)
     visible = st.multiselect("Routes", options=routes, default=routes, label_visibility="collapsed")
@@ -231,7 +231,7 @@ def render():
 
     with col1:
         if not breakdown_df.empty and breakdown_df['weather_condition'].notna().any():
-            st.subheader("Delay Distribution by Weather")
+            st.subheader("Delay Distribution by Weather", anchor=False)
             weather_delay = breakdown_df[breakdown_df['weather_condition'].notna()].groupby(
                 'weather_condition')['arrival_diff_minutes'].mean().sort_values()
             fig = px.bar(
@@ -246,7 +246,7 @@ def render():
 
     with col2:
         if not breakdown_df.empty and breakdown_df['crowding_level'].notna().any():
-            st.subheader("Delay Distribution by Crowd Level")
+            st.subheader("Delay Distribution by Crowd Level", anchor=False)
             crowd_delay = breakdown_df[breakdown_df['crowding_level'].notna()].groupby(
                 'crowding_level')['arrival_diff_minutes'].mean().sort_values()
             crowd_delay.index = crowd_delay.index.astype(int).astype(str)
