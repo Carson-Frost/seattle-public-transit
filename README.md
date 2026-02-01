@@ -5,8 +5,12 @@ A Streamlit dashboard for analyzing Seattle public transit data from [King Count
 ## Features
 
 - **Performance Analysis**: Compare actual vs scheduled arrival times, view delay distributions by weather and crowding
+  <img width="1872" height="822" alt="image" src="https://github.com/user-attachments/assets/fe31ae23-3865-46fe-b7bb-a4c308199f57" />
 - **Schedule Browser**: Browse trips by route, direction, date, and time range with stop times and route maps
+  <img width="1913" height="941" alt="image" src="https://github.com/user-attachments/assets/2128dea9-c3eb-4d54-90f9-0db6e2f6c4ab" />
 - **Actual Trip Viewer**: View recorded trip observations with delay calculations
+  <img width="1856" height="501" alt="image" src="https://github.com/user-attachments/assets/0ae49f19-6114-471b-be8b-9b0f3c9f9286" />
+
 
 ## Quick Start
 
@@ -42,4 +46,4 @@ seattle-public-transit/
 
 GTFS data from King County Metro: https://kingcounty.gov/en/dept/metro/travel-options/transit-data/open-data
 
-*Actual trip data is sample data for demonstration purposes.*
+*'Actual trip' data is sample data for demonstration purposes.*
