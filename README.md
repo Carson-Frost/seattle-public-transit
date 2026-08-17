@@ -15,7 +15,7 @@ A Streamlit dashboard for analyzing Seattle public transit data from [King Count
 ## Quick Start
 
 ```bash
-git clone https://github.com/yourusername/seattle-public-transit.git
+git clone https://github.com/Carson-Frost/seattle-public-transit.git
 cd seattle-public-transit
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
